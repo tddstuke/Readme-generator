@@ -36,8 +36,13 @@ function generateMarkdown(data, badge) {
 ## Description
 ${description}
 
-## Installation Instructions
-${installation}
+
+${
+  installation
+    ? `## Installation Instructions
+${installation}`
+    : ""
+}
 
 ## Usage Information
 ${usage}
