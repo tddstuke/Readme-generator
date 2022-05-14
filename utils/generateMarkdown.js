@@ -4,7 +4,6 @@ function renderLicenseBadge(license) {
   return (badge = license
     ? `[![License](https://img.shields.io/badge/License-${license}-brightgreen)](https://opensource.org/licenses/${license})`
     : `""`);
-  // console.log(license);
 }
 
 // TODO: Create a function that returns the license link
@@ -17,9 +16,40 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data, badge) {
+  const {
+    title,
+    description,
+    installation,
+    license,
+    usage,
+    contribution,
+    test,
+    licence,
+    username,
+    email,
+  } = data;
+
   return `
-  # ${data.title}       
+  # ${title}       
   ${badge}
+
+## Description
+${description}
+
+## Installation Instructions
+${installation}
+
+## Usage Information
+${usage}
+
+## License 
+${license}
+
+## Contribution Guidelines
+${contribution}
+
+## Test Instructions
+${test}
 `;
 }
 
