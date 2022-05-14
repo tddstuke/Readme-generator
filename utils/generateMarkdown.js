@@ -44,17 +44,32 @@ ${installation}`
     : ""
 }
 
-## Usage Information
-${usage}
+
+${
+  usage
+    ? `## Usage Information 
+  ${usage}`
+    : ""
+}
 
 ## License 
 ${license}
 
-## Contribution Guidelines
-${contribution}
 
-## Test Instructions
-${test}
+${
+  contribution
+    ? `## Contribution Guidelines 
+${contribution}`
+    : ""
+}
+
+
+${
+  test
+    ? `## Test Instructions 
+${test}`
+    : ""
+}
 `;
 }
 
