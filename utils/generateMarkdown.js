@@ -70,6 +70,12 @@ ${
 ${test}`
     : ""
 }
+
+## Questions
+You can reach me through my GitHub account or through email listed below with any questions.
+  - [My GitHub](https://github.com/${username})
+  - [My email](mailto:${email})
+
 `;
 }
 
