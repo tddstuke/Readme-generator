@@ -1,5 +1,10 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
+const {
+  generateMarkdown,
+  renderLicenseBadge,
+} = require("./utils/generateMarkdown");
+const fs = require("fs");
 // TODO: Create an array of questions for user input
 const questions = [
   {
@@ -52,10 +57,10 @@ const questions = [
       "Enter any instructions for testing your project. If none press Enter",
   },
   {
-    type: "checkbox",
+    type: "list",
     name: "license",
     message: "Choose a license for your application.",
-    choices: ["MIT", "Apache License v2.0", "GNU General Public License v3.0"],
+    choices: ["MIT", "Apache_License_v2.0", "GNU_General_Public_License_v3.0"],
   },
   {
     type: "input",
@@ -86,12 +91,34 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile("./dist/readme.md", data, (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve({
+        ok: true,
+        message: "Readme Created!",
+      });
+    });
+  });
+}
 
 // TODO: Create a function to initialize app
 function init() {
-  inquirer.prompt(questions);
+  return inquirer.prompt(questions);
 }
 
 // Function call to initialize app
-init();
+init()
+  .then((readMeData) => {
+    console.log(readMeData);
+    renderLicenseBadge(readMeData.license);
+    return generateMarkdown(readMeData, badge);
+  })
+  .then((pageData) => {
+    console.log(pageData);
+    return writeToFile(pageData);
+  });
