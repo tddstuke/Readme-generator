@@ -13,7 +13,8 @@ function renderLicenseBadge(license) {
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+// Don't Need
+// function renderLicenseLink(license) {}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
@@ -42,8 +43,44 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.`;
+
+    case "Apache_2.0":
+      return `
+  Apache  License, Version 2.0
+
+  Copyright ${year} ${username}
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.`;
+
+    case "AGPL_3.0":
+      return `
+     GNU Affero General Public License, Version 3.0
+
+     Copyright (C) ${year} ${username}
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU Affero General Public License as published
+     by the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+ 
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU Affero General Public License for more details.
+ 
+     You should have received a copy of the GNU Affero General Public License
+     along with this program.  If not, see <https://www.gnu.org/licenses/>.`;
   }
-  return licenseTxt;
 }
 
 // TODO: Create a function to generate markdown for README
@@ -62,7 +99,7 @@ function generateMarkdown(data, badge) {
 
   return `
   # ${title}       
-  ${badge}
+  ${renderLicenseBadge(license)}
 
   ## Table of Contents
  - [Description](#description)
@@ -124,7 +161,6 @@ You can reach me through my GitHub account or through email listed below with an
 
 module.exports = {
   generateMarkdown,
-  renderLicenseBadge,
-  renderLicenseLink,
+
   renderLicenseSection,
 };

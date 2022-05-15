@@ -108,6 +108,7 @@ function writeToFile(data) {
   });
 }
 function writeToLicense(data) {
+  console.log(data);
   return new Promise((resolve, reject) => {
     fs.writeFile("./dist/License.txt", data, (err) => {
       if (err) {
@@ -131,11 +132,24 @@ function init() {
 init()
   .then((readMeData) => {
     console.log(readMeData);
-    renderLicenseBadge(readMeData.license);
-    renderLicenseLink(readMeData.license);
-    return generateMarkdown(readMeData, badge);
+    return {
+      pageData: generateMarkdown(readMeData),
+      licenseData: renderLicenseSection(
+        readMeData.license,
+        readMeData.username
+      ),
+    };
   })
-  .then((pageData) => {
+  .then(({ pageData, licenseData }) => {
     console.log(pageData);
-    return writeToFile(pageData);
+    writeToFile(pageData)
+      .then(() => {
+        return console.log("Readme file generated");
+      })
+      .then(() => {
+        return writeToLicense(licenseData);
+      })
+      .then(() => {
+        return console.log("license file generated");
+      });
   });
