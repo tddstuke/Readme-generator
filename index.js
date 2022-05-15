@@ -3,6 +3,8 @@ const inquirer = require("inquirer");
 const {
   generateMarkdown,
   renderLicenseBadge,
+  renderLicenseLink,
+  renderLicenseSection,
 } = require("./utils/generateMarkdown");
 const fs = require("fs");
 // TODO: Create an array of questions for user input
@@ -93,7 +95,7 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(data) {
   return new Promise((resolve, reject) => {
-    fs.writeFile("./dist/readme.md", data, (err) => {
+    fs.writeFile("./dist/Readme.md", data, (err) => {
       if (err) {
         reject(err);
         return;
@@ -101,6 +103,20 @@ function writeToFile(data) {
       resolve({
         ok: true,
         message: "Readme Created!",
+      });
+    });
+  });
+}
+function writeToLicense(data) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile("./dist/License.txt", data, (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve({
+        ok: true,
+        message: "License text Created!",
       });
     });
   });
@@ -116,6 +132,7 @@ init()
   .then((readMeData) => {
     console.log(readMeData);
     renderLicenseBadge(readMeData.license);
+    renderLicenseLink(readMeData.license);
     return generateMarkdown(readMeData, badge);
   })
   .then((pageData) => {
