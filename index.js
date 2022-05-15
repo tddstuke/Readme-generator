@@ -90,6 +90,18 @@ const questions = [
       }
     },
   },
+  {
+    type: "input",
+    name: "name",
+    message: "Please enter your first and last name for copyright (Required)",
+    validate: (name) => {
+      if (name) {
+        return true;
+      } else {
+        console.log("Please enter first and last name!");
+      }
+    },
+  },
 ];
 
 // TODO: Create a function to write README file
@@ -134,10 +146,7 @@ init()
     console.log(readMeData);
     return {
       pageData: generateMarkdown(readMeData),
-      licenseData: renderLicenseSection(
-        readMeData.license,
-        readMeData.username
-      ),
+      licenseData: renderLicenseSection(readMeData.license, readMeData.name),
     };
   })
   .then(({ pageData, licenseData }) => {

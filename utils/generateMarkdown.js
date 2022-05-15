@@ -18,13 +18,13 @@ function renderLicenseBadge(license) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license, username) {
+function renderLicenseSection(license, name) {
   switch (license) {
     case "MIT":
       return `
       MIT License
       
-      Copyright (c) ${year} ${username}
+      Copyright (c) ${year} ${name}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@ SOFTWARE.`;
       return `
   Apache  License, Version 2.0
 
-  Copyright ${year} ${username}
+  Copyright ${year} ${name}
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ SOFTWARE.`;
       return `
      GNU Affero General Public License, Version 3.0
 
-     Copyright (C) ${year} ${username}
+     Copyright (C) ${year} ${name}
 
      This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU Affero General Public License as published
@@ -130,10 +130,7 @@ ${
 }
 
 ## License  <a id = "license"></a>
-Licensed under the [${license.replace(
-    "_",
-    " "
-  )} License](https://opensource.org/licenses/${license.replace("_", "-")})
+Licensed under the [${license.replace("_", " ")} License](./License.txt)
 
 
 ${
