@@ -62,7 +62,7 @@ const questions = [
     type: "list",
     name: "license",
     message: "Choose a license for your application.",
-    choices: ["MIT", "Apache_License_v2.0", "GNU_General_Public_License_v3.0"],
+    choices: ["MIT", "Apache_2.0", "AGPL_3.0"],
   },
   {
     type: "input",
@@ -95,7 +95,7 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(data) {
   return new Promise((resolve, reject) => {
-    fs.writeFile("./dist/Readme.md", data, (err) => {
+    fs.writeFile("./dist/readme.md", data, (err) => {
       if (err) {
         reject(err);
         return;

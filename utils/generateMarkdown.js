@@ -4,7 +4,10 @@ const year = today.getFullYear();
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   return (badge = license
-    ? `[![License](https://img.shields.io/badge/License-${license}-brightgreen)](https://opensource.org/licenses/${license})`
+    ? `[![License](https://img.shields.io/badge/License-${license}-brightgreen)](https://opensource.org/licenses/${license.replace(
+        "_",
+        "-"
+      )})`
     : `""`);
 }
 
@@ -90,7 +93,10 @@ ${
 }
 
 ## License  <a id = "license"></a>
-Licensed under the [${license} License](https://opensource.org/licenses/${license})
+Licensed under the [${license.replace(
+    "_",
+    " "
+  )} License](https://opensource.org/licenses/${license.replace("_", "-")})
 
 
 ${
